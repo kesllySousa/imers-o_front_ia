@@ -1,0 +1,327 @@
+:root{
+	/* Tema Dark (padrão) */
+	--bg: #111111;
+	--card: #1f1f1f;
+	--accent: #e50914;
+	--text: #e6e6e6;
+	--muted: #b3b3b3;
+}
+
+/* Reset básico */
+*{
+	/* Inclui padding/border no cálculo de largura/altura */
+	box-sizing: border-box;
+}
+
+/* Garante que html e body ocupem toda a altura da janela */
+html, body{
+	height: 100%;
+}
+
+body{
+	margin: 0; /* Remove margem padrão do navegador */
+	background: var(--bg); /* Fundo sólido baseado no tema */
+	color: var(--text); /* Define cor do texto principal */
+	/* Pilha de fontes legível e performática */
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	-webkit-font-smoothing: antialiased; /* Suaviza fontes em WebKit */
+	-moz-osx-font-smoothing: grayscale; /* Suaviza fontes no macOS */
+	display: flex; /* Usa flexbox para layout principal */
+	flex-direction: column; /* Empilha elementos verticalmente */
+	align-items: center; /* Centraliza conteúdo horizontalmente */
+}
+
+header{
+	width: 100%; /* Header ocupa toda a largura disponível */
+	padding: 18px 24px; /* Espaçamento interno do header */
+	display: flex; /* Flexbox para alinhar logo e botão */
+	justify-content: space-between; /* Logo à esquerda, botão à direita */
+	align-items: center; /* Alinha verticalmente */
+}
+.logo{
+	color: var(--accent); /* Cor do logotipo em destaque */
+	font-family: 'Bebas Neue', cursive; /* Fonte Bebas Neue */
+	font-weight: 500; /* Peso normal para Bebas Neue */
+	font-size: 1.25rem; /* Tamanho da fonte do logotipo */
+	text-decoration: none; /* Remove sublinhado de links */
+}
+
+main{
+	width: 100%; /* Largura total até o max-width */
+	max-width: 1100px; /* Limita largura em telas grandes para melhorar leitura */
+	padding: 36px 20px 80px; /* Espaçamento interno (top, lateral, bottom) */
+	text-align: center; /* Centraliza textos dentro do main */
+}
+
+h1{
+	margin: 0 0 28px; /* Remove margem superior e adiciona espaço abaixo */
+	font-size: 2.2rem; /* Tamanho do título */
+	letter-spacing: -0.5px; /* Ajusta espaçamento entre letras para visual compacto */
+}
+
+/* Perfis - Estrutura semântica simplificada */
+.profiles {
+	display: flex;
+	flex-direction: column;
+	gap: 3vh; /* Ajusta ao tamanho da tela */
+	padding: 0;
+	margin: 0 auto;
+	list-style: none;
+	align-items: center;
+	justify-content: center;
+	min-height: 50vh; /* Usa viewport height para ajustar à tela */
+}
+
+/* Perfis individuais */
+.profile {
+	width: clamp(120px, 18vw, 160px); /* Largura responsiva baseada na viewport */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.profile-link {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+	color: inherit;
+}
+
+.profile img {
+	width: 140px;
+	height: 140px;
+	object-fit: cover;
+	border-radius: 12px;
+	display: block;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+	transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.profile-link:hover img, .profile-link:focus img {
+	transform: scale(1.06);
+	box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+	outline: 2px solid var(--accent);
+}
+
+.profile-name {
+	display: block;
+	margin-top: 12px;
+	color: var(--muted);
+	font-size: 1rem;
+	text-align: center;
+}
+
+.profile-link:focus {
+	outline-offset: 8px;
+	border-radius: 8px;
+}
+
+.visually-hidden{
+	position: absolute !important; /* Remove do fluxo visual, mantendo para leitores de tela */
+	height: 1px; /* Minimiza área visível */
+	width: 1px; /* Minimiza área visível */
+	overflow: hidden; /* Esconde conteúdo visualmente */
+	clip: rect(1px, 1px, 1px, 1px); /* Compatibilidade para esconder */
+	white-space: nowrap; /* Evita quebras de linha */
+	border: 0; /* Remove borda */
+	padding: 0; /* Remove padding */
+	margin: -1px; /* Ajusta margem para garantir invisibilidade visual */
+}
+
+footer{
+	width: 100%; /* Footer ocupa toda largura */
+	padding: 24px 0; /* Espaçamento vertical */
+	text-align: center; /* Centraliza conteúdo */
+	color: var(--muted); /* Cor de texto secundária */
+	font-size: 0.85rem; /* Tamanho da fonte do rodapé */
+}
+
+/* ===== RESPONSIVO ===== */
+
+/* Extra Small Devices (até 380px) - Celulares muito pequenos */
+@media (max-width: 380px){
+	header{ padding: 12px 16px; /* Reduz padding em telas muito pequenas */ }
+	.logo{ font-size: 1.1rem; /* Logo menor */ }
+	h1{ 
+		font-size: 1.4rem; /* Título bem compacto */
+		margin: 0 0 16px; /* Menos espaço abaixo */
+	}
+	main{ padding: 16px 8px 60px; /* Padding mínimo */ }
+	.profiles{
+		display: grid; /* Grid 2x2 para layout quadrado */
+		grid-template-columns: repeat(2, 1fr); /* 2 colunas iguais */
+		gap: 14px; /* Espaço entre perfis */
+		max-width: 220px; /* Limita largura do grid */
+		margin: 0 auto; /* Centraliza o grid */
+		padding: 20px;
+		justify-items: center;
+		align-items: start;
+		min-height: auto;
+	}
+	.profile{ width: auto; /* Largura automática dentro do grid */ }
+	footer{ font-size: 0.75rem; /* Rodapé menor */ }
+}
+
+/* Small Devices (380px - 640px) - Smartphones */
+@media (min-width: 381px) and (max-width: 640px){
+	header{ padding: 14px 18px; /* Padding reduzido */ }
+	.logo{ font-size: 1.15rem; /* Logo em tamanho intermediário */ } 
+	h1{ 
+		font-size: 1.8rem; /* Título escalado para mobile */
+		margin: 0 0 20px; 
+	}
+	main{ padding: 24px 12px 70px; /* Padding otimizado para mobile */ }
+	.profiles{
+		display: grid; /* Grid 2x2 para layout quadrado */
+		grid-template-columns: repeat(2, 1fr); /* 2 colunas iguais */
+		gap: 16px; /* Espaço entre perfis */
+		max-width: 280px; /* Limita largura do grid */
+		margin: 0 auto; /* Centraliza o grid */
+		padding: 20px;
+		justify-items: center;
+		align-items: start;
+		min-height: auto;
+	}
+	.profile{ width: auto; /* Largura automática dentro do grid */ }
+	footer{ font-size: 0.8rem; /* Rodapé legível */ }
+}
+
+
+/* Medium Devices (641px - 1024px) - Tablets */
+@media (min-width: 641px) and (max-width: 1024px){
+	header{ padding: 16px 20px; /* Padding equilibrado */ }
+	.logo{ font-size: 1.35rem; /* Logo escalado */ }
+	h1{ 
+		font-size: 2rem; /* Título aumentado */
+		margin: 0 0 24px;
+	}
+	main{ 
+		max-width: 900px; /* Largura máxima confortável */
+		padding: 32px 16px 75px; /* Padding para tablet */
+	}
+	.profiles{ 
+		gap: 20px; /* Espaço mais generoso */
+		flex-wrap: wrap; /* Permite múltiplas linhas */
+		padding: 20px;
+		margin: 0 auto;
+		min-height: auto;
+	}
+	.profile{ width: 140px; /* Perfis maiores */ }
+	.profile img{ 
+		width: 120px; 
+		height: 120px; 
+		border-radius: 11px;
+	}
+	.profile-name{ 
+		margin-top: 12px;
+		font-size: 0.98rem; /* Texto maior */
+	}
+	footer{ font-size: 0.87rem; }
+}
+
+/* Large Devices (1025px - 1440px) - Desktop padrão */
+@media (min-width: 1025px) and (max-width: 1440px){
+	header{ padding: 18px 24px; /* Padding padrão */ }
+	.logo{ font-size: 1.25rem; /* Logo padrão */ }
+	h1{ 
+		font-size: 2.2rem; /* Tamanho full desktop */
+		margin: 0 0 28px;
+	}
+	main{ 
+		max-width: 1100px; /* Largura máxima */
+		padding: 36px 20px 80px; /* Padding espaçoso */
+	}
+	.profiles{ 
+		gap: 28px; /* Espaço generoso */
+		flex-wrap: nowrap; /* Sem quebra de linha */
+		padding: 20px;
+		margin: 0 auto;
+		min-height: auto;
+	}
+	.profile{ width: 160px; /* Largura conforável */ }
+	.profile img{ 
+		width: 140px; 
+		height: 140px; 
+		border-radius: 12px; /* Cantos bem arrendodados */
+	}
+	.profile-name{ 
+		margin-top: 12px;
+		font-size: 1rem; /* Tamanho padrão */
+	}
+	footer{ font-size: 0.85rem; }
+}
+
+/* Extra Large Devices (1441px+) - Monitores grandes/4K */
+@media (min-width: 1441px){
+	body{ 
+		/* Aumenta viewport para telas muito grandes */
+		font-size: 1.1rem; 
+	}
+	header{ padding: 20px 32px; /* Padding aumentado */ }
+	.logo{ font-size: 1.4rem; /* Logo maior */ }
+	h1{ 
+		font-size: 2.6rem; /* Título impressionante */
+		margin: 0 0 32px;
+	}
+	main{ 
+		max-width: 1300px; /* Mais largura */
+		padding: 48px 32px 100px; /* Padding significativo */
+	}
+	.profiles{ 
+		gap: 36px; /* Espaço muito generoso */
+		flex-wrap: nowrap; /* Sem quebra */
+		padding: 20px;
+		margin: 0 auto;
+		min-height: auto;
+	}
+	.profile{ width: 180px; /* Perfis maiores */ }
+	.profile img{ 
+		width: 160px; 
+		height: 160px; 
+		border-radius: 13px;
+	}
+	.profile-name{ 
+		margin-top: 14px;
+		font-size: 1.1rem; /* Texto maior */
+	}
+	footer{ font-size: 0.9rem; /* Rodapé maior */ }
+}
+
+/* Telas menores que 900px - Perfis em grid 2x2 */
+@media (max-width: 900px) {
+	.profiles {
+		display: grid !important;
+		grid-template-columns: repeat(2, 1fr) !important;
+		gap: 16px !important; /* Espaçamento fixo para aparência igual */
+		max-width: 300px !important; /* Largura fixa para grid equilibrado */
+		margin: 0 auto !important;
+		padding: 5vh 0 !important; /* Padding vertical baseado na tela */
+		justify-items: center !important;
+		align-items: start !important;
+		flex-direction: initial !important;
+		min-height: auto !important;
+	}
+}
+
+/* Telas maiores que 900px - Perfis em linha horizontal */
+@media (min-width: 901px) {
+	.profiles {
+		display: flex !important;
+		flex-direction: row !important;
+		gap: 32px !important; /* Espaçamento fixo para consistência */
+		justify-content: center !important;
+		align-items: center !important;
+		flex-wrap: nowrap !important;
+		padding: 5vh 0 !important; /* Padding vertical */
+		margin: 0 auto !important;
+		max-width: 90vw !important; /* Limita largura */
+		min-height: auto !important;
+	}
+}
+
+/* Pequenos toques adicionais */
+.logo:focus{
+	outline: 3px solid rgba(229,9,20,0.18); /* Anel de foco para acessibilidade */
+	outline-offset: 6px; /* Afasta o anel do elemento */
+}

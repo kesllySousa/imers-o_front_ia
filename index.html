@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="#" class="logo" aria-label="Página inicial da Netflix">NETFLIX</a>
+    </header>
+
+    <main>
+        <h1>Quem está assistindo?</h1>
+        <section aria-label="Perfis de usuário">
+            <ul class="profiles">
+                <li class="profile">
+                    <a href="netflix-plataform-main/catalogo/catalogo.html" class="profile-link">
+                        <img src="assets/perfil1.jpg" 
+                        alt="Perfil da Ronalda" />
+                        <span class="profile-name">Ronalda</span>
+                    </a>
+                </li>
+                <li class="profile">
+                    <a href="netflix-plataform-main/catalogo/catalogo.html" class="profile-link">
+                        <img src="assets/perfil2.jpg" 
+                        alt="Perfil do Janeudo" />
+                        <span class="profile-name">Janeudo</span>
+                    </a>
+                </li>
+                <li class="profile">
+                    <a href="netflix-plataform-main/catalogo/catalogo.html" class="profile-link">
+                        <img src="assets/perfil3.jpg" 
+                        alt="Perfil do Keslly" />
+                        <span class="profile-name">Keslly</span>
+                    </a>
+                </li>
+        
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p class="visually-hidden">Rodapé da página Netflix</p>
+    </footer>
+
+    <script>
+        // Armazenar perfil ativo no localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileLinks = document.querySelectorAll('.profile-link');
+            
+            profileLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const img = link.querySelector('img');
+                    const nameSpan = link.querySelector('.profile-name');
+                    
+                    if (img && nameSpan) {
+                        const activeProfile = {
+                            name: nameSpan.textContent.trim(),
+                            image: img.getAttribute('src') // Usar getAttribute para pegar o valor relativo
+                        };
+                        
+                        console.log('Salvando perfil ativo:', activeProfile);
+                        localStorage.setItem('activeProfile', JSON.stringify(activeProfile));
+                    }
+                    
+                    // Navegar para a página do catálogo
+                    window.location.href = link.href;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
